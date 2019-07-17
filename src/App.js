@@ -5,7 +5,7 @@ import Posts from './components/Posts/Posts'
 function App() {
   return (
     <div className="App">
-      <h1>aloha</h1>
+      <h1>dear diary</h1>
       <Posts />
     </div>
   );
