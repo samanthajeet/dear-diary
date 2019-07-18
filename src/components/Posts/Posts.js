@@ -18,16 +18,16 @@ class Posts extends Component {
     this.getPosts();
   }
 
-  createVibrant = (img) => {
-    Vibrant.from(img).getPalette((err, palette) => {
+  createVibrant = async (img) => {
+    let response = await Vibrant.from(img).getPalette((err, palette) => {
       let palette2 = {};
       for (let prop in palette) {
         palette2[prop] = palette[prop].hex;
       }
-      let {Vibrant} = palette2
-      // console.log(Vibrant)
-      return Vibrant
-    });
+      return palette2
+    })
+    console.log(response.Vibrant.hex)
+    return response.Vibrant.hex
   }
 
   getPosts = async () => {
@@ -38,6 +38,7 @@ class Posts extends Component {
     let { posts } = this.state;
     let mappedPosts = posts.map((post, index) => {
       if (index % 2 === 0) {
+        let vibrant = this.createVibrant(post.post_image)
         return (
           <Post1
             key={post.post_id}
@@ -45,7 +46,7 @@ class Posts extends Component {
             title={post.post_title}
             image={post.post_image}
             date={post.post_date}
-            createVibrant={this.createVibrant}
+            vibrant={vibrant}
           />
         );
       } else {

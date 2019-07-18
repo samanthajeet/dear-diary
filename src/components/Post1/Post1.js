@@ -19,7 +19,6 @@ class Post1 extends Component {
       for (let prop in palette) {
         palette2[prop] = palette[prop].hex;
       }
-
       this.setState({palette: palette2})
     });
   }
@@ -27,14 +26,14 @@ class Post1 extends Component {
 
   render() {
     // console.log(this.props)
-    let {DarkMuted, DarkVibrant, LightMuted, LightVibrant, Muted, Vibrant} = this.state.palette
+    let {Vibrant} = this.state.palette
     let { date, title, text, image, vibrant, createVibrant} = this.props
     return (
       <PostContainer>
         <PostText>
           <header>
             <h5>{date}</h5>
-            <h1 style={{color: `${createVibrant(image)}`}}>{title}</h1>
+            <h1 style={{color: `${Vibrant}`}}>{title}</h1>
           </header>
           <p>{text}</p>
         </PostText>
