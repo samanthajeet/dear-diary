@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled from 'styled-components'
+import * as Vibrant from "node-vibrant";
 import Post1 from "../Post1/Post1";
 import Post2 from "../Post2/Post2";
 
@@ -17,9 +18,20 @@ class Posts extends Component {
     this.getPosts();
   }
 
+  createVibrant = (img) => {
+    Vibrant.from(img).getPalette((err, palette) => {
+      let palette2 = {};
+      for (let prop in palette) {
+        palette2[prop] = palette[prop].hex;
+      }
+      let {Vibrant} = palette2
+      // console.log(Vibrant)
+      return Vibrant
+    });
+  }
+
   getPosts = async () => {
     let response = await axios.get(`/api/diary/getPosts`);
-    console.log(response.data);
     this.setState({ posts: response.data });
   };
   render() {
@@ -33,6 +45,7 @@ class Posts extends Component {
             title={post.post_title}
             image={post.post_image}
             date={post.post_date}
+            createVibrant={this.createVibrant}
           />
         );
       } else {
@@ -43,6 +56,7 @@ class Posts extends Component {
             title={post.post_title}
             image={post.post_image}
             date={post.post_date}
+            vibrant={this.createVibrant(post.post_image)}
           />
         );
       }

@@ -13,7 +13,7 @@ export const PostText = styled.div`
   padding: 1rem;
   text-align: left;
   h1 {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 `;
 
