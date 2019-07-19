@@ -16,4 +16,5 @@ massive(CONNECTION_STRING).then( db => {
 
 // Endpoints
 const ctrl = require('./controller')
-app.get(`/api/diary/getPosts`, ctrl.getPosts)
+app.get(`/api/diary/`, ctrl.getPosts)
+app.post(`/api/diary`, ctrl.createPost)
