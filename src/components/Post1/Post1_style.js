@@ -5,7 +5,7 @@ export const PostContainer = styled.main`
   display: flex;
   width: 100%;
   height: 50%;
-  margin-top: 0.25rem;
+  /* margin-top: 0.25rem; */
 `;
 
 export const PostText = styled.div`

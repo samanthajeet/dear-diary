@@ -5,7 +5,15 @@ import * as Vibrant from "node-vibrant";
 import Post1 from "../Post1/Post1";
 import Post2 from "../Post2/Post2";
 
-const MapedPostContainer = styled.div``;
+const MapedPostContainer = styled.div`
+margin-top: 1rem;
+`;
+
+const DearDiary = styled.header`
+background: white;
+position: sticky;
+top:0;
+`
 
 class Posts extends Component {
   state = {
@@ -62,7 +70,10 @@ class Posts extends Component {
     });
     return (
       <div>
+        <DearDiary>
         <h1>dear diary</h1>
+
+        </DearDiary>
         <MapedPostContainer>{mappedPosts}</MapedPostContainer>
       </div>
     );

@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import { CreatePostContainer, TextInput,TitleImgInput } from "./CreatePostStyle";
+import {
+  CreatePostContainer,
+  TextInput,
+  TitleImgInput,
+  ImgPreview,
+  LeftInput
+} from "./CreatePostStyle";
 
 class CreatePost extends Component {
   state = {
-    post_image: "",
+    post_image:
+      "",
     post_text: "",
     post_title: ""
   };
@@ -35,9 +42,13 @@ class CreatePost extends Component {
         <h1>create post here</h1>
         <TextInput>
           <TitleImgInput>
+            <LeftInput>
+
             <input
+              id='title-input'
               type="text"
               placeholder="post title"
+              value={post_title}
               onChange={e => this.handleChange("post_title", e.target.value)}
             />
             <input
@@ -45,14 +56,22 @@ class CreatePost extends Component {
               placeholder="post image url"
               onChange={e => this.handleChange("post_image", e.target.value)}
             />
+            </LeftInput>
+            <ImgPreview>
+              <img src={post_image} alt={post_title} />
+            </ImgPreview>
           </TitleImgInput>
           <textarea
             maxLength="1600"
             onChange={e => this.handleChange("post_text", e.target.value)}
           />
         </TextInput>
-        <button onClick={() => this.createPost()}>create diary entry</button>
-        <img src={post_image} alt={post_title} />
+          <div id="create-post-btn">
+
+            <button onClick={() => this.createPost()}>
+              create diary entry
+            </button>
+          </div>
       </CreatePostContainer>
     );
   }
