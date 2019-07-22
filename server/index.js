@@ -18,3 +18,4 @@ massive(CONNECTION_STRING).then( db => {
 const ctrl = require('./controller')
 app.get(`/api/diary/`, ctrl.getPosts)
 app.post(`/api/diary`, ctrl.createPost)
+app.delete(`/api/diary/:id`, ctrl.deletePost)

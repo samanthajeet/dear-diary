@@ -6,9 +6,15 @@ module.exports = {
   },
   createPost: async(req,res) => {
     const db = req.app.get('db');
-    console.log(req.body)
+    // console.log(req.body)
     let {post_title, post_text, post_image} = req.body
     let diaryPosts = await db.diary.createPost({ post_title, post_text, post_image})
+    res.status(200).send(diaryPosts)
+  },
+  deletePost: async(req, res) => {
+    const db = req.app.get('db');
+    let {id} = req.params
+    let diaryPosts = await db.diary.deletePost({ id })
     res.status(200).send(diaryPosts)
   }
 }
