@@ -72,7 +72,6 @@ class Posts extends Component {
       <div>
         <DearDiary>
         <h1>dear diary</h1>
-
         </DearDiary>
         <MapedPostContainer>{mappedPosts}</MapedPostContainer>
       </div>
