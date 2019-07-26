@@ -24,16 +24,12 @@ class Admin extends Component {
     this.setState({ posts: response.data });
   };
 
-  deletePost = async(id) =>{
-    let response = await axios.delete(`/api/diary/${id}`)
-    this.setState({posts: response.data})
-  }
+
   render() { 
     return ( 
       <div>
       <h1>admin page</h1>
       <CreatePost createPost={this.createPost} />
-      <PostManager posts={this.state.posts} deletePost={this.deletePost} />
     </div>
      );
   }
