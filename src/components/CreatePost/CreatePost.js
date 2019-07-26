@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseIcon from '@material-ui/icons/Close';
 import { lightGreen } from '@material-ui/core/colors';
@@ -101,7 +100,7 @@ class CreatePost extends Component {
       post_text,
       post_title
     };
-    this.createPost()
+    this.createPost(body)
     this.setState({
       post_image: "",
       post_text: "",

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import CreatePost from '../CreatePost/CreatePost';
-import PostManager from '../PostManager/PostManager';
+// import PostManager from '../PostManager/PostManager';
 
 
 class Admin extends Component {

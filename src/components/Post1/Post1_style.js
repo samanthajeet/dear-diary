@@ -27,7 +27,7 @@ export const PostText = styled.div`
   text-align: left;
   animation: fade-in 3s ;
   h1 {
-    font-size: 3.5rem;
+    font-size: 3.25rem;
     line-height: 4rem;
     margin-bottom: .5rem;
   }
