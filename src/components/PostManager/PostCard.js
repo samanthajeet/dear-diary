@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     maxWidth: "25rem",
     marginBottom: "1rem",
     textAlign: "left",
-    height: '100%'
+    height: "100%"
   },
   media: {
     height: "20rem"
@@ -22,20 +22,38 @@ const useStyles = makeStyles({
 
 export default function MediaCard(props) {
   const classes = useStyles();
-  let { image, title, deletePost, id, text } = props;
+  let { image, title, deletePost, id, text, date } = props;
   return (
     <Card className={classes.card}>
-      <CardActionArea  >
-      <Typography gutterBottom variant="h5" component="h2" style={{margin: '0.5rem', fontFamily: 'DM Serif Text'}}>
-        {title}
-      </Typography>
+      <CardActionArea>
+        <Typography
+          gutterBottom
+          variant="p"
+          component="p"
+          style={{ marginLeft: '.5rem', marginTop: '.5rem',fontSize:'.75rem', fontFamily: "Nunito" }}
+        >
+          {date}
+        </Typography>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          style={{ margin: "0.5rem", marginTop: '.2rem', fontFamily: "DM Serif Text" }}
+        >
+          {title}
+        </Typography>
         <CardMedia
           className={classes.media}
           image={image}
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p" style={{fontFamily: 'Nunito'}} >
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            style={{ fontFamily: "Nunito" }}
+          >
             {text}
           </Typography>
         </CardContent>

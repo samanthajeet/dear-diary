@@ -48,6 +48,7 @@ height: 30rem;
     resize: none;
     border-radius: .5rem;
     border: 1px solid black;
+    padding: .5rem;
   }
 `
 

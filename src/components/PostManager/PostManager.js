@@ -33,7 +33,8 @@ class PostManager extends Component {
   render() {
     let mappedPosts = this.state.posts.map( post => {
       return (
-        <PostCard   key={post.post_id}
+        <PostCard  key={post.post_id}
+        date={post.post_date}
         image={post.post_image}
         title={post.post_title}
         deletePost={this.deletePost}

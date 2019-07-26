@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios'
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
@@ -88,6 +89,11 @@ class CreatePost extends Component {
     });
   }
 
+  createPost = async (body) => {
+    let response = await axios.post(`/api/diary`, body);
+    this.setState({posts: response.data})
+  };
+
   addPost() {
     let { post_image, post_text, post_title } = this.state;
     let body = {
@@ -95,7 +101,7 @@ class CreatePost extends Component {
       post_text,
       post_title
     };
-    this.props.createPost(body);
+    this.createPost()
     this.setState({
       post_image: "",
       post_text: "",
