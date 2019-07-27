@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-import CreatePost from '../CreatePost/CreatePost';
-// import PostManager from '../PostManager/PostManager';
+import AdminNav from '../AdminNav/AdminNav'
 
 
 class Admin extends Component {
@@ -28,8 +27,8 @@ class Admin extends Component {
   render() { 
     return ( 
       <div>
+      <AdminNav />
       <h1>admin page</h1>
-      <CreatePost createPost={this.createPost} />
     </div>
      );
   }
