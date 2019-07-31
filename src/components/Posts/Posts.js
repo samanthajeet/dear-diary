@@ -2,22 +2,38 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import * as Vibrant from "node-vibrant";
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Post1 from "../Post1/Post1";
 import Post2 from "../Post2/Post2";
 
 const MapedPostContainer = styled.div`
-margin-top: 1rem;
+  margin-top: 1rem;
 `;
 
 const DearDiary = styled.header`
-background: white;
-position: sticky;
-top:0;
-`
+  background: white;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const MenuBtn = styled.menu`
+  /* border: 1px solid purple; */
+  width: 2rem;
+
+`;
+
+
 
 class Posts extends Component {
   state = {
-    posts: []
+    posts: [],
+    anchorEl: null,
+    open: false
   };
 
   componentDidMount() {
@@ -40,8 +56,22 @@ class Posts extends Component {
     let response = await axios.get(`/api/diary`);
     this.setState({ posts: response.data });
   };
+
+  goToAdmin(){
+    this.props.history.push(`/admin/postmanager`)
+    this.handleClose()
+  }
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget, open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null, open: false });
+  };
+
   render() {
-    let { posts } = this.state;
+    let { posts, anchorEl, open } = this.state;
     let mappedPosts = posts.map((post, index) => {
       if (index % 2 === 0) {
         let vibrant = this.createVibrant(post.post_image);
@@ -71,7 +101,42 @@ class Posts extends Component {
     return (
       <div>
         <DearDiary>
-        <h1>dear diary</h1>
+        <MenuBtn>
+          <IconButton
+            aria-label="more"
+            aria-controls="long-menu"
+            aria-haspopup="true"
+            onClick={this.handleClick}
+          >
+            <MoreVertIcon />
+          </IconButton>
+          <Menu
+            id="long-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={open}
+            onClose={this.handleClose}
+            PaperProps={{
+              style: {
+                maxHeight: "4rem",
+                width: "6rem",
+                // height: "3rem",
+                // border: "1px solid green"
+              }
+            }}
+          >
+
+              <MenuItem
+                // selected={option === "Pyxis"}
+                onClick={() => this.goToAdmin()}
+              >
+                Admin
+              </MenuItem>
+            )}
+          </Menu>
+        </MenuBtn>
+          <h1>dear diary</h1>
+          <div></div>
         </DearDiary>
         <MapedPostContainer>{mappedPosts}</MapedPostContainer>
       </div>

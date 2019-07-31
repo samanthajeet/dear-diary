@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const NavigationContainer = styled.main`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 100%;
 `
 
@@ -11,6 +11,7 @@ const Navigation = styled.nav`
   flex-direction: column;
   width: 15rem;
 
+  
   li:hover {
     color: red;
     cursor: pointer;
@@ -26,11 +27,16 @@ let pages = [
     name: "Post Manager",
     val: "postmanager"
   }
+  ,
+  {
+    name: "Your Diary",
+    val: "yourdiary"
+  }
 ];
 
 class AdminNav extends Component {
   state = {
-    showNav: false
+    showNav: true
   };
 
   handleOpen() {
@@ -40,7 +46,12 @@ class AdminNav extends Component {
   }
 
   goToPage(val) {
-    this.props.history.push(`/admin/${val}`);
+    if(val === 'yourdiary'){
+      this.props.history.push(`/`);
+    } else {
+
+      this.props.history.push(`/admin/${val}`);
+    }
   }
   render() {
     // console.log(this.props);

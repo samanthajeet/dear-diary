@@ -4,11 +4,11 @@ import PostCard from "./PostCard";
 import styled from "styled-components";
 
 const AdminPosts = styled.main`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 80%;
+  width: 100%;
 `;
 
 class PostManager extends Component {

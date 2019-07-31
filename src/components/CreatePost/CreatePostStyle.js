@@ -5,6 +5,7 @@ export const CreatePostContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80%;
   #create-post-btn{
     width: 90%;
     display: flex;
