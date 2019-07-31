@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+const NavigationContainer = styled.main`
+  border: 1px solid red;
+  height: 100%;
+`
+
 const Navigation = styled.nav`
   display: flex;
   flex-direction: column;
-
+  width: 15rem;
 
   li:hover {
     color: red;
@@ -41,11 +46,11 @@ class AdminNav extends Component {
     // console.log(this.props);
     let { showNav } = this.state;
     return (
-      <div>
+      <NavigationContainer>
         {this.props.history.location.pathname.includes("/admin") ? (
           <div>
             <button onClick={() => this.handleOpen()}>show</button>
-            <Navigation id={showNav ? null : "no-show"}>
+            <Navigation id={showNav ? null : "no-show"} >
               <ul>
                 {pages.map(page => (
                   <li key={page.val} onClick={() => this.goToPage(page.val)}>
@@ -56,7 +61,7 @@ class AdminNav extends Component {
             </Navigation>
           </div>
         ) : null}
-      </div>
+      </NavigationContainer>
     );
   }
 }

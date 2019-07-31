@@ -1,21 +1,20 @@
-import React, {Component} from 'react';
-import axios from 'axios'
-import AdminNav from '../AdminNav/AdminNav'
-
+import React, { Component } from "react";
+import axios from "axios";
+import AdminNav from "../AdminNav/AdminNav";
 
 class Admin extends Component {
-  state = { 
+  state = {
     posts: []
-   }
+  };
 
-  componentDidMount(){
-    this.getPosts()
+  componentDidMount() {
+    this.getPosts();
   }
 
-  createPost = async (body) => {
+  createPost = async body => {
     // console.log(body);
     let response = await axios.post(`/api/diary`, body);
-    this.setState({posts: response.data})
+    this.setState({ posts: response.data });
   };
 
   getPosts = async () => {
@@ -23,16 +22,13 @@ class Admin extends Component {
     this.setState({ posts: response.data });
   };
 
-
-  render() { 
-    return ( 
+  render() {
+    return (
       <div>
-      <AdminNav />
-      <h1>admin page</h1>
-    </div>
-     );
+        <AdminNav />
+      </div>
+    );
   }
 }
- 
- 
+
 export default Admin;
