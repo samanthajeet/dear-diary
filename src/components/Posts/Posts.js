@@ -6,19 +6,24 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+
 import Post1 from "../Post1/Post1";
 import Post2 from "../Post2/Post2";
 
+
 const MapedPostContainer = styled.div`
   margin-top: 1rem;
+  /* height: 100%; */
+  /* border: 2px solid red; */
 `;
-
 const DearDiary = styled.header`
-  background: white;
-  position: sticky;
-  top: 0;
   display: flex;
   justify-content: space-between;
+  background: white;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
 `;
 
 const MenuBtn = styled.menu`
@@ -100,7 +105,7 @@ class Posts extends Component {
     });
     return (
       <div>
-        <DearDiary>
+        <DearDiary >
         <MenuBtn>
           <IconButton
             aria-label="more"
