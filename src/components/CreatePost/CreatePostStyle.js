@@ -43,12 +43,13 @@ height: 30rem;
   align-items: flex-start;
 
   textarea{
-    height: 70%;
+    height: 100%;
     width: 100%;
     outline: none;
     resize: none;
     border-radius: .5rem;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: none;
     padding: .5rem;
   }
 `

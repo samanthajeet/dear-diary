@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
-import axios from 'axios'
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CloseIcon from '@material-ui/icons/Close';
-import { lightGreen } from '@material-ui/core/colors';
-import IconButton from '@material-ui/core/IconButton';
-import Snackbar from '@material-ui/core/Snackbar';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { Component } from "react";
+import axios from "axios";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CloseIcon from "@material-ui/icons/Close";
+import { lightGreen } from "@material-ui/core/colors";
+import IconButton from "@material-ui/core/IconButton";
+import Snackbar from "@material-ui/core/Snackbar";
+import SnackbarContent from "@material-ui/core/SnackbarContent";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 
 import {
   CreatePostContainer,
@@ -19,29 +20,35 @@ import {
 } from "./CreatePostStyle";
 
 const variantIcon = {
-  success: CheckCircleIcon,
+  success: CheckCircleIcon
 };
 
-{/* ------------------------------------------ Material UI Snackbar Stuff----------------------------------------------- */}
+{
+  /* ------------------------------------------ Material UI Snackbar Stuff----------------------------------------------- */
+}
 const useStyles1 = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(3, 2)
+  },
   success: {
-    backgroundColor: lightGreen[500],
+    backgroundColor: lightGreen[500]
   },
   icon: {
-    fontSize: 20,
+    fontSize: 20
   },
   iconVariant: {
     opacity: 0.9,
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(1)
   },
   message: {
-    display: 'flex',
-    alignItems: 'center',
-  },
+    display: "flex",
+    alignItems: "center"
+  }
 }));
 
 function MySnackbarContentWrapper(props) {
   const classes = useStyles1();
+
   const { className, message, onClose, variant, ...other } = props;
   const Icon = variantIcon[variant];
 
@@ -56,9 +63,14 @@ function MySnackbarContentWrapper(props) {
         </span>
       }
       action={[
-        <IconButton key="close" aria-label="Close" color="inherit" onClick={onClose}>
+        <IconButton
+          key="close"
+          aria-label="Close"
+          color="inherit"
+          onClick={onClose}
+        >
           <CloseIcon className={classes.icon} />
-        </IconButton>,
+        </IconButton>
       ]}
       {...other}
     />
@@ -69,10 +81,12 @@ MySnackbarContentWrapper.propTypes = {
   className: PropTypes.string,
   message: PropTypes.string,
   onClose: PropTypes.func,
-  variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
+  variant: PropTypes.oneOf(["error", "info", "success", "warning"]).isRequired
 };
 
-{/* ------------------------------------------ Start of Create Post Compnonent----------------------------------------------- */}
+{
+  /* ------------------------------------------ Start of Create Post Compnonent----------------------------------------------- */
+}
 
 class CreatePost extends Component {
   state = {
@@ -80,6 +94,7 @@ class CreatePost extends Component {
     post_text: "",
     post_title: "",
     open: false,
+    charCountColor: ""
   };
 
   handleChange(prop, val) {
@@ -88,9 +103,9 @@ class CreatePost extends Component {
     });
   }
 
-  createPost = async (body) => {
+  createPost = async body => {
     let response = await axios.post(`/api/diary`, body);
-    this.setState({posts: response.data})
+    this.setState({ posts: response.data });
   };
 
   addPost() {
@@ -100,7 +115,7 @@ class CreatePost extends Component {
       post_text,
       post_title
     };
-    this.createPost(body)
+    this.createPost(body);
     this.setState({
       post_image: "",
       post_text: "",
@@ -109,19 +124,22 @@ class CreatePost extends Component {
     });
   }
 
-// ------------------------------------------ Toggles Snackbar---------------------------------------------- 
 
-  handleClose =(event, reason) => {
-    if (reason === 'clickaway') {
+
+  // ------------------------------------------ Toggles Snackbar----------------------------------------------
+
+  handleClose = (event, reason) => {
+    if (reason === "clickaway") {
       return;
     }
     this.setState({
       open: false
-    })
-  }
+    });
+  };
 
   render() {
     let { post_image, post_title, post_text } = this.state;
+
     return (
       <CreatePostContainer>
         <TextInput>
@@ -145,18 +163,21 @@ class CreatePost extends Component {
               <img src={post_image} alt={post_title} />
             </ImgPreview>
           </TitleImgInput>
-          <textarea
-            maxLength="1600"
-            onChange={e => this.handleChange("post_text", e.target.value)}
-            value={post_text}
-          />
+          <Paper style={{ width: "100%", height: "70%" }}>
+            <textarea
+              maxLength="1800"
+              onChange={e => this.handleChange("post_text", e.target.value)}
+              value={post_text}
+            />
+          </Paper>
         </TextInput>
+        <p style={{ color: post_text.length > 1500 ? "red" : null }} >{post_text.length} / 1800 </p>
         <div id="create-post-btn">
           <button onClick={() => this.addPost()}>create diary entry</button>
           {/* <button onClick={() => this.setState({open: true})}>click me</button> */}
         </div>
 
-{/* ------------------------------------------ Material UI Snackbar----------------------------------------------- */}
+        {/* ------------------------------------------ Material UI Snackbar----------------------------------------------- */}
         <Snackbar
           anchorOrigin={{
             vertical: "bottom",
