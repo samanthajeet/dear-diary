@@ -160,7 +160,7 @@ class CreatePost extends Component {
               />
             </LeftInput>
             <ImgPreview>
-              <img src={post_image} alt={post_title} />
+              <img src={post_image} alt={ post_image ? post_title : ''} />
             </ImgPreview>
           </TitleImgInput>
           <Paper style={{ width: "100%", height: "70%" }}>
@@ -171,7 +171,7 @@ class CreatePost extends Component {
             />
           </Paper>
         </TextInput>
-        <p style={{ color: post_text.length > 1500 ? "red" : null }} >{post_text.length} / 1800 </p>
+        <p style={{ color: post_text.length > 1700 ? "#e6673c" : null }} >{post_text.length} / 1800 </p>
         <div id="create-post-btn">
           <button onClick={() => this.addPost()}>create diary entry</button>
           {/* <button onClick={() => this.setState({open: true})}>click me</button> */}

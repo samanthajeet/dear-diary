@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import * as Vibrant from "node-vibrant";
 
 import { PostContainer, PostText, PostImage } from "../Post1/Post1_style";
@@ -8,9 +8,8 @@ class Post2 extends Component {
     palette: []
   };
 
-
-  componentDidMount(){
-    this.createVibrant()
+  componentDidMount() {
+    this.createVibrant();
   }
 
   createVibrant() {
@@ -20,28 +19,29 @@ class Post2 extends Component {
       for (let prop in palette) {
         palette2[prop] = palette[prop].hex;
       }
-      this.setState({palette: palette2})
+      this.setState({ palette: palette2 });
     });
   }
-  render() { 
-    let {Vibrant} = this.state.palette
-    let { title, date, image, text} = this.props;
-    return ( 
+  render() {
+    let { Vibrant, LightVibrant, DarkVibrant } = this.state.palette;
+    let { title, date, image, text } = this.props;
+    return (
       <PostContainer>
-      <PostImage>
-        <img src={image} alt={title} />
-      </PostImage>
-      <PostText>
-        <header>
-          <h5>{date}</h5>
-          <h1 style={{ color: `${Vibrant}` }} >{title}</h1>
-        </header>
-        <p>{text}</p>
-      </PostText>
-    </PostContainer>
-     );
+        <PostImage>
+          <img src={image} alt={title} />
+        </PostImage>
+        <PostText>
+          <header>
+            <h5>{date}</h5>
+            <h1 style={{ color: `${Vibrant}` }}>{title}</h1>
+            <h1 style={{ color: `${DarkVibrant}` }}>{title}</h1>
+            {/* <h1 style={{ color: `${LightVibrant}` }}>{title}</h1> */}
+          </header>
+          <p>{text}</p>
+        </PostText>
+      </PostContainer>
+    );
   }
 }
- 
-export default Post2;
 
+export default Post2;
