@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import * as Vibrant from "node-vibrant";
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -13,7 +12,7 @@ import Post2 from "../Post2/Post2";
 
 
 const MapedPostContainer = styled.div`
-  margin-top: 1rem;
+  margin-top: 8rem;
   /* height: 100%; */
   /* border: 2px solid red; */
 `;
@@ -21,8 +20,10 @@ const DearDiary = styled.header`
   display: flex;
   justify-content: space-between;
   background: white;
-  position: sticky;
-  position: -webkit-sticky;
+  position: fixed;
+  width: 100%;
+  height: 10;
+  background: white;
   top: 0;
 `;
 

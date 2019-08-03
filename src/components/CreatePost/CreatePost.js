@@ -230,7 +230,7 @@ class CreatePost extends Component {
           <MySnackbarContentWrapper
             onClose={this.handleClose}
             variant="success"
-            message="Post has been successfully created!"
+            message={`Your post has been created`}
           />
         </Snackbar>
       </CreatePostContainer>
