@@ -132,7 +132,7 @@ class CreatePost extends Component {
       post_image,
       post_text,
       post_title,
-      vibrant: vibrant ? 'Vibrant' : 'DarkVibrant'
+      vibrant: vibrant ? "Vibrant" : "DarkVibrant"
     };
     this.createPost(body);
     this.setState({
@@ -181,14 +181,21 @@ class CreatePost extends Component {
                 placeholder="post title"
                 value={post_title}
                 onChange={e => this.handleChange("post_title", e.target.value)}
-                style={{color: this.state.checked ? palette.Vibrant : palette.DarkVibrant}}
+                style={{
+                  color: this.state.checked
+                    ? palette.Vibrant
+                    : palette.DarkVibrant
+                }}
               />
-              <Switch
-                color="default"
-                onClick={ () => this.handleCheck()}
-                checked={this.state.checked}
-                inputProps={{ "aria-label": "checkbox with default color" }}
-              />
+              <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <p>choose your title color</p>
+                <Switch
+                  color="default"
+                  onClick={() => this.handleCheck()}
+                  checked={this.state.checked}
+                  inputProps={{ "aria-label": "checkbox with default color" }}
+                />
+              </div>
 
               <input
                 type="text"
@@ -201,7 +208,7 @@ class CreatePost extends Component {
               <img src={post_image} alt={post_image ? post_title : ""} />
             </ImgPreview>
           </TitleImgInput>
-          <Paper style={{ width: "100%", height: "70%" }}>
+          <Paper style={{ width: "100%", height: "65%" }}>
             <textarea
               maxLength="1800"
               onChange={e => this.handleChange("post_text", e.target.value)}
@@ -209,7 +216,7 @@ class CreatePost extends Component {
             />
           </Paper>
         </TextInput>
-        <p style={{ color: post_text.length > 1700 ? "#e6673c" : null }}>
+        <p style={{ marginTop: ".5rem", color: post_text.length > 1700 ? "#e6673c" : null }}>
           {post_text.length} / 1800{" "}
         </p>
         <div id="create-post-btn">
