@@ -10,6 +10,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import * as Vibrant from "node-vibrant";
 
 import {
   CreatePostContainer,
@@ -94,8 +95,16 @@ class CreatePost extends Component {
     post_text: "",
     post_title: "",
     open: false,
-    charCountColor: ""
+    palette: {}
   };
+
+
+  componentDidUpdate(prevProps, prevState) {
+    // Typical usage (don't forget to compare props):
+    if (prevState.post_image !== this.state.post_image) {
+      this.createVibrant();
+    }
+  }
 
   handleChange(prop, val) {
     this.setState({
@@ -123,6 +132,20 @@ class CreatePost extends Component {
       open: true
     });
   }
+
+  createVibrant() {
+    console.log('hit')
+    let img = this.state.post_image;
+    Vibrant.from(img).getPalette((err, palette) => {
+      let palette2 = {};
+      for (let prop in palette) {
+        palette2[prop] = palette[prop].hex;
+      }
+      this.setState({palette: palette2})
+      console.log(this.state)
+    });
+  }
+
 
 
 
