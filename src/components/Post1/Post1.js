@@ -27,15 +27,15 @@ class Post1 extends Component {
 
   render() {
     // console.log(this.props)
-    let {Vibrant, LightVibrant, DarkVibrant} = this.state.palette
-    let { date, title, text, image} = this.props
+    let {Vibrant, DarkVibrant} = this.state.palette
+    let { date, title, text, image, vibrant} = this.props
+    console.log(this.props)
     return (
       <PostContainer>
         <PostText>
           <header>
             <h5>{date}</h5>
-            <h1 style={{color: `${Vibrant}`}}>{title}</h1>
-            <h1 style={{color: `${DarkVibrant}`}}>{title}</h1>
+            <h1 style={{color: vibrant === "Vibrant" ? Vibrant : DarkVibrant}}>{title}</h1>
             {/* <h1 style={{color: `${LightVibrant}`}}>{title}</h1> */}
           </header>
           <p>{text}</p>

@@ -87,7 +87,7 @@ class Posts extends Component {
             title={post.post_title}
             image={post.post_image}
             date={post.post_date}
-            // vibrant={vibrant}
+            vibrant={post.vibrant}
           />
         );
       } else {
@@ -98,7 +98,7 @@ class Posts extends Component {
             title={post.post_title}
             image={post.post_image}
             date={post.post_date}
-            // vibrant={this.createVibrant(post.post_image)}
+            vibrant={post.vibrant}
           />
         );
       }

@@ -23,8 +23,8 @@ class Post2 extends Component {
     });
   }
   render() {
-    let { Vibrant, LightVibrant, DarkVibrant } = this.state.palette;
-    let { title, date, image, text } = this.props;
+    let { Vibrant, DarkVibrant } = this.state.palette;
+    let { title, date, image, text, vibrant } = this.props;
     return (
       <PostContainer>
         <PostImage>
@@ -33,8 +33,7 @@ class Post2 extends Component {
         <PostText>
           <header>
             <h5>{date}</h5>
-            <h1 style={{ color: `${Vibrant}` }}>{title}</h1>
-            <h1 style={{ color: `${DarkVibrant}` }}>{title}</h1>
+            <h1 style={{color: vibrant === "Vibrant" ? Vibrant : DarkVibrant}}>{title}</h1>
             {/* <h1 style={{ color: `${LightVibrant}` }}>{title}</h1> */}
           </header>
           <p>{text}</p>

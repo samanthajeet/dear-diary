@@ -11,6 +11,7 @@ import SnackbarContent from "@material-ui/core/SnackbarContent";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import * as Vibrant from "node-vibrant";
+import Switch from "@material-ui/core/Switch";
 
 import {
   CreatePostContainer,
@@ -95,9 +96,10 @@ class CreatePost extends Component {
     post_text: "",
     post_title: "",
     open: false,
-    palette: {}
+    palette: {},
+    checked: true,
+    vibrant: ""
   };
-
 
   componentDidUpdate(prevProps, prevState) {
     // Typical usage (don't forget to compare props):
@@ -110,6 +112,13 @@ class CreatePost extends Component {
     this.setState({
       [prop]: val
     });
+    // console.log(this.state);
+  }
+
+  handleCheck() {
+    this.setState({
+      checked: !this.state.checked
+    });
   }
 
   createPost = async body => {
@@ -118,11 +127,12 @@ class CreatePost extends Component {
   };
 
   addPost() {
-    let { post_image, post_text, post_title } = this.state;
+    let { post_image, post_text, post_title, vibrant } = this.state;
     let body = {
       post_image,
       post_text,
-      post_title
+      post_title,
+      vibrant: vibrant ? 'Vibrant' : 'DarkVibrant'
     };
     this.createPost(body);
     this.setState({
@@ -134,20 +144,17 @@ class CreatePost extends Component {
   }
 
   createVibrant() {
-    console.log('hit')
+    console.log("hit");
     let img = this.state.post_image;
     Vibrant.from(img).getPalette((err, palette) => {
       let palette2 = {};
       for (let prop in palette) {
         palette2[prop] = palette[prop].hex;
       }
-      this.setState({palette: palette2})
-      console.log(this.state)
+      this.setState({ palette: palette2 });
+      // console.log(this.state);
     });
   }
-
-
-
 
   // ------------------------------------------ Toggles Snackbar----------------------------------------------
 
@@ -161,7 +168,7 @@ class CreatePost extends Component {
   };
 
   render() {
-    let { post_image, post_title, post_text } = this.state;
+    let { post_image, post_title, post_text, palette } = this.state;
 
     return (
       <CreatePostContainer>
@@ -174,7 +181,15 @@ class CreatePost extends Component {
                 placeholder="post title"
                 value={post_title}
                 onChange={e => this.handleChange("post_title", e.target.value)}
+                style={{color: this.state.checked ? palette.Vibrant : palette.DarkVibrant}}
               />
+              <Switch
+                color="default"
+                onClick={ () => this.handleCheck()}
+                checked={this.state.checked}
+                inputProps={{ "aria-label": "checkbox with default color" }}
+              />
+
               <input
                 type="text"
                 placeholder="post image url"
@@ -183,7 +198,7 @@ class CreatePost extends Component {
               />
             </LeftInput>
             <ImgPreview>
-              <img src={post_image} alt={ post_image ? post_title : ''} />
+              <img src={post_image} alt={post_image ? post_title : ""} />
             </ImgPreview>
           </TitleImgInput>
           <Paper style={{ width: "100%", height: "70%" }}>
@@ -194,7 +209,9 @@ class CreatePost extends Component {
             />
           </Paper>
         </TextInput>
-        <p style={{ color: post_text.length > 1700 ? "#e6673c" : null }} >{post_text.length} / 1800 </p>
+        <p style={{ color: post_text.length > 1700 ? "#e6673c" : null }}>
+          {post_text.length} / 1800{" "}
+        </p>
         <div id="create-post-btn">
           <button onClick={() => this.addPost()}>create diary entry</button>
           {/* <button onClick={() => this.setState({open: true})}>click me</button> */}
