@@ -17,3 +17,14 @@ VALUES (1,'Edinburgh', CURRENT_DATE,'Lorem ipsum dolor sit amet, consectetur adi
 
 Aenean eget fringilla est, nec lacinia dui. Sed mollis suscipit orci, nec viverra ligula. Mauris sed rutrum lorem, in malesuada velit. Ut a mi libero. Ut tristique elit vitae lectus bibendum cursus. Pellentesque tellus metus, convallis vehicula rhoncus nec, vulputate vel lectus. Donec tempus blandit urna, iaculis porttitor lorem tincidunt quis. Nullam fringilla a lacus nec consequat. Nulla bibendum viverra porttitor. Nullam tincidunt lectus auctor tortor aliquam, sit amet auctor felis dictum. Quisque varius consectetur faucibus. Integer ut magna sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla id tempus ipsum, sed semper augue. Fusce ullamcorper vulputate semper. Proin venenatis faucibus scelerisque.','https://live.staticflickr.com/3696/32667805683_11c2bf44cc_k.jpg')
 
+create table dear_diary_users(
+    user_id serial primary key,
+    username varchar(20),
+    email varchar(200),
+    password varchar(25),
+    hash varChar(50)
+)
+
+
+insert into dear_diary_users(username, email, password)
+values ('samjeet', 'samanthajeet@gmail.com', 'test')
