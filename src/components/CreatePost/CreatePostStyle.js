@@ -15,17 +15,25 @@ export const CreatePostContainer = styled.main`
     justify-content: flex-end;
     margin-top: 1rem;
     button {
-      border-radius: 1rem;
+      border-radius: .5rem;
       border: none;
       padding: 0.4rem;
       background: white;
-      box-shadow: 1px 1px 15px 5px #cfcfcf;
+      box-shadow: 1px 2px 3px #cfcfcf;
       color: gray;
     }
 
     button:hover {
       color: black;
+      box-shadow: 1px 2px 3px #7d7d7d;
     }
+  }
+
+  input:hover{
+    box-shadow: 1px 2px 3px #7d7d7d;
+  }
+  input:focus {
+    box-shadow: 1px 2px 3px #7d7d7d;
   }
 `;
 
@@ -67,12 +75,14 @@ export const LeftInput = styled.div`
   input {
     height: 15%;
     width: 90%;
-    border-radius: 1rem;
-    border: 1px solid black;
+    border-radius: 5px;
+    /* border: 1px solid black; */
+    border: none;
     background: none;
     padding-left: 1rem;
     padding-right: 1rem;
     text-align: center;
+    box-shadow: 1px 2px 3px #cfcfcf;
   }
 
   input:focus {
@@ -84,8 +94,9 @@ export const LeftInput = styled.div`
     font-family: "DM Serif Text", serif;
     font-size: 2.75rem;
     border: none;
-    border-bottom: 1px solid black;
-    border-radius: 0;
+    /* border-bottom: 1px solid black; */
+    border-radius: 5px;
+    /* box-shadow: none; */
   }
 `;
 
