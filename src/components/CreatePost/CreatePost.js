@@ -119,6 +119,8 @@ class CreatePost extends Component {
     this.setState({
       checked: !this.state.checked
     });
+
+    // console.log(this.state.checked)
   }
 
   createPost = async body => {
@@ -127,12 +129,12 @@ class CreatePost extends Component {
   };
 
   addPost() {
-    let { post_image, post_text, post_title, vibrant } = this.state;
+    let { post_image, post_text, post_title,  checked } = this.state;
     let body = {
       post_image,
       post_text,
       post_title,
-      vibrant: vibrant ? "Vibrant" : "DarkVibrant"
+      vibrant: checked  ? "Vibrant" : "DarkVibrant"
     };
     this.createPost(body);
     this.setState({

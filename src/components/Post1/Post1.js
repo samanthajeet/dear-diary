@@ -29,7 +29,7 @@ class Post1 extends Component {
     // console.log(this.props)
     let {Vibrant, DarkVibrant} = this.state.palette
     let { date, title, text, image, vibrant} = this.props
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <PostContainer>
         <PostText>

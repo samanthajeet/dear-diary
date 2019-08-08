@@ -61,6 +61,7 @@ class Posts extends Component {
   getPosts = async () => {
     let response = await axios.get(`/api/diary`);
     this.setState({ posts: response.data });
+    // console.log(this.state)
   };
 
   goToAdmin(){

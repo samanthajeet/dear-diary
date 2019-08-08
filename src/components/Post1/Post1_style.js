@@ -5,7 +5,8 @@ export const PostContainer = styled.main`
   display: flex;
   flex-direction: row;
   width: 100%;
-  max-height: 40rem;
+  min-height: 40rem;
+  max-height: 45rem;
   /* height: 50%; */
   /* margin-top: 0.25rem; */
   @media (max-width: 800px) {
@@ -29,7 +30,7 @@ export const PostText = styled.div`
   h1 {
     font-size: 3.25rem;
     line-height: 4rem;
-    margin-bottom: .5rem;
+    margin-bottom: .25rem;
   }
 
   @keyframes fade-in {
