@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import createIcon from "../../images/create-icon.png";
+import list from "../../images/list.svg";
 
 const NavigationContainer = styled.main`
   height: 100vh;
@@ -63,7 +64,8 @@ const Navigation = styled.nav`
 let pages = [
   {
     name: "Post Manager",
-    val: "postmanager"
+    val: "postmanager",
+    icon: list
   },
   {
     name: "Create Post",
