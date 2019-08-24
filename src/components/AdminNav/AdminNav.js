@@ -1,43 +1,73 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import createIcon from '../../images/create-icon.png'
+import createIcon from "../../images/create-icon.png";
 
 const NavigationContainer = styled.main`
-  /* border: 1px solid red; */
   height: 100%;
-  background: #F4722B;
-`
+  width: 20vw;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(45deg, #799f0c, #ffe000);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(45deg, #799f0c, #ffe000);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+`;
 
 const Navigation = styled.nav`
   display: flex;
   flex-direction: column;
-  width: 15rem;
+  align-items: flex-start;
+  width: 100%;
+  height: 20vh;
 
-  li{
+  ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 1rem;
+  }
+
+  li {
+    width: 100%;
     height: 2.5rem;
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding-left: 2rem;
+    color: white;
   }
-  
+
   li:hover {
-    color: #F4722B;
+    color: #f4722b;
     cursor: pointer;
     background: white;
+    border-radius: 35px 0px 0px 35px;
+  }
+
+  #nav-icon {
+    height: 1rem;
+    width: 1rem;
+    border: none;
+    margin-right: 0.5rem;
+  }
+
+  #selected-icon {
+    border-radius: 40px 0px 0px 40px;
+    background: white;
+    color: #f4722b;
   }
 `;
 
 let pages = [
   {
+    name: "Post Manager",
+    val: "postmanager"
+  },
+  {
     name: "Create Post",
     val: "createpost",
     icon: createIcon
   },
-  {
-    name: "Post Manager",
-    val: "postmanager"
-  }
-  ,
   {
     name: "Your Diary",
     val: "yourdiary"
@@ -56,27 +86,32 @@ class AdminNav extends Component {
   }
 
   goToPage(val) {
-    if(val === 'yourdiary'){
+    if (val === "yourdiary") {
       this.props.history.push(`/`);
     } else {
-
       this.props.history.push(`/admin/${val}`);
     }
   }
   render() {
     console.log(this.props.history.location.pathname);
-    let {pathname} = this.props.history.location
+    let { pathname } = this.props.history.location;
     let { showNav } = this.state;
     return (
       <NavigationContainer>
         {this.props.history.location.pathname.includes("/admin") ? (
           <div>
             {/* <button onClick={() => this.handleOpen()}>show</button> */}
-            <Navigation id={showNav ? null : "no-show"} >
+            <Navigation id={showNav ? null : "no-show"}>
               <ul>
                 {pages.map(page => (
-                  <li key={page.val} onClick={() => this.goToPage(page.val)} style={{background: pathname === '/admin/' + page.val ? 'white' : null, color:pathname === '/admin/' + page.val ? '#F4722B' : null }}>
-                  <img src={page.icon} alt=""/>
+                  <li
+                    key={page.val}
+                    onClick={() => this.goToPage(page.val)}
+                    id={
+                      pathname === "/admin/" + page.val ? "selected-icon" : null
+                    }
+                  >
+                    <img src={page.icon} alt="" id="nav-icon" />
                     {page.name}
                   </li>
                 ))}

@@ -1,72 +1,60 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import styled from "styled-components";
 
-const useStyles = makeStyles({
-  card: {
-    width: "21rem",
-    marginBottom: "1rem",
-    textAlign: "left",
-    paddingBottom: "1rem",
-    // height: "100%"
-  },
-  media: {
-    height: "20rem"
+const PostCard = styled.main`
+  /* border: 1px solid green; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  box-shadow: 1px 2px 2px hsla(226, 100%, 0%, 0.36);
+  border-radius: 5px;
+  height: 6rem;
+  padding-right: 1rem;
+  text-align: left;
+  color: #87A60B;
+
+  :hover {
+    box-shadow: 1px 2px 2px hsla(226, 100%, 0%, 0.5);
+    cursor: pointer;
+    p {
+      color: #87A60B
+    }
   }
-});
+
+`;
+
+const PostCardImage = styled.figure`
+  height: 100%;
+  width: 25%;
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px 0 0 5px;
+  }
+`;
+
+const PostCardText = styled.section`
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  color:#6D676E;
+
+`;
 
 export default function MediaCard(props) {
-  const classes = useStyles();
   let { image, title, deletePost, id, text, date } = props;
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <Typography
-          gutterBottom
-          variant="p"
-          component="p"
-          style={{ marginLeft: '.5rem', marginTop: '.5rem',fontSize:'.75rem', fontFamily: "Nunito" }}
-        >
-          {date}
-        </Typography>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="h2"
-          style={{ margin: "0.5rem", marginTop: '.2rem', fontFamily: "DM Serif Text" }}
-        >
-          {title}
-        </Typography>
-        <CardMedia
-          className={classes.media}
-          image={image}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-            style={{ fontFamily: "Nunito" }}
-          >
-            {text}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        {/* <Button size="small" color="primary">
-          Share
-        </Button> */}
-        <Button onClick={() => deletePost(id)} size="small" color="primary">
-          Delete
-        </Button>
-      </CardActions>
-    </Card>
+    <PostCard>
+      <PostCardImage>
+        <img src={image} alt="" />
+      </PostCardImage>
+      <PostCardText>
+        <p>{date}</p>
+        <p>{title}</p>
+        <button onClick={() => deletePost(id)}>delete</button>
+      </PostCardText>
+    </PostCard>
   );
 }

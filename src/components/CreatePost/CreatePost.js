@@ -124,8 +124,8 @@ class CreatePost extends Component {
   }
 
   createPost = async body => {
-    let response = await axios.post(`/api/diary`, body);
-    this.setState({ posts: response.data });
+    await axios.post(`/api/diary`, body);
+    this.props.history.push('/admin/postmanager')
   };
 
   addPost() {
@@ -137,12 +137,7 @@ class CreatePost extends Component {
       vibrant: checked  ? "Vibrant" : "DarkVibrant"
     };
     this.createPost(body);
-    this.setState({
-      post_image: "",
-      post_text: "",
-      post_title: "",
-      open: true
-    });
+    
   }
 
   createVibrant() {
