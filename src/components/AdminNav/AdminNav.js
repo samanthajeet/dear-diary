@@ -3,13 +3,9 @@ import styled from "styled-components";
 import createIcon from "../../images/create-icon.png";
 
 const NavigationContainer = styled.main`
-  height: 100%;
+  height: 100vh;
   width: 20vw;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(45deg, #799f0c, #ffe000);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(45deg, #799f0c, #ffe000);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 `;
 
 const Navigation = styled.nav`
@@ -17,14 +13,20 @@ const Navigation = styled.nav`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  height: 20vh;
+  height: 100vh;
+  padding-top: 3rem;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(45deg, #799f0c, #ffe000);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(45deg, #799f0c, #ffe000);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   ul {
     width: 100%;
-    height: 100%;
+    height: 30%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     padding-left: 1rem;
   }
 
@@ -97,7 +99,7 @@ class AdminNav extends Component {
     let { pathname } = this.props.history.location;
     let { showNav } = this.state;
     return (
-      <NavigationContainer>
+      <NavigationContainer >
         {this.props.history.location.pathname.includes("/admin") ? (
           <div>
             {/* <button onClick={() => this.handleOpen()}>show</button> */}

@@ -23,6 +23,7 @@ app.get(`/auth/login`, authCtrl.login)
 
 // Post Endpoints
 const postCtrl = require('./posts_controllers')
+app.get(`/api/diary/:id`, postCtrl.getPost)
 app.get(`/api/diary/`, postCtrl.getPosts)
 app.post(`/api/diary`, postCtrl.createPost)
 app.delete(`/api/diary/:id`, postCtrl.deletePost)

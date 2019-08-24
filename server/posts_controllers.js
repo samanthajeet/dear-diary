@@ -16,5 +16,11 @@ module.exports = {
     let {id} = req.params
     let diaryPosts = await db.diary.deletePost({ id })
     res.status(200).send(diaryPosts)
+  }, 
+  getPost: async(req, res) => {
+    const db = req.app.get('db');
+    let {id} = req.params
+    let diaryPost = await db.diary.getPost({ id })
+    res.status(200).send(diaryPost)
   }
 }
