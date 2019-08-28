@@ -18,23 +18,48 @@ const AdminPosts = styled.main`
   }
 `;
 
+const PostManagerHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  input {
+    border-radius: 15px;
+    border: 1px solid gray;
+    text-align: center;
+    height: 2rem;
+
+    :focus {
+      outline: none;
+      border: 1px solid #87a60b;
+      color: #87a60b;
+    }
+
+    :hover{
+      outline: none;
+      border: 1px solid #87a60b;
+      color: #87a60b;
+    }
+  }
+`;
+
 class PostManager extends Component {
   state = {
     posts: [],
     showModal: false,
     modalID: null,
-    searchInput: ''
+    searchInput: ""
   };
 
   componentDidMount() {
     this.getPosts();
   }
 
-  handleChange(prop,val){
+  handleChange(prop, val) {
     this.setState({
       [prop]: val
-    })
-    console.log(this.state.searchInput)
+    });
+    console.log(this.state.searchInput);
   }
 
   getPosts = async () => {
@@ -53,26 +78,38 @@ class PostManager extends Component {
 
   render() {
     let { showModal, modalID, searchInput } = this.state;
-    let mappedPosts = this.state.posts.filter( post => post.post_title.toLowerCase().includes(searchInput.toLowerCase())).map(post => {
-      return (
-        <PostCard
-          key={post.post_id}
-          date={post.post_date}
-          image={post.post_image}
-          title={post.post_title}
-          deletePost={this.deletePost}
-          text={post.post_text}
-          showModal={this.showModal}
-          id={post.post_id}
-        />
-      );
-    });
+    let mappedPosts = this.state.posts
+      .filter(post =>
+        post.post_title.toLowerCase().includes(searchInput.toLowerCase())
+      )
+      .map(post => {
+        return (
+          <PostCard
+            key={post.post_id}
+            date={post.post_date}
+            image={post.post_image}
+            title={post.post_title}
+            deletePost={this.deletePost}
+            text={post.post_text}
+            showModal={this.showModal}
+            id={post.post_id}
+          />
+        );
+      });
     return (
       <AdminPosts>
-        <h2>your posts</h2>
-        <input onChange={(e) => this.handleChange("searchInput", e.target.value)} type="text" placeholder="search by title" />
+        <PostManagerHeader>
+          <h2>your posts</h2>
+          <input
+            onChange={e => this.handleChange("searchInput", e.target.value)}
+            type="text"
+            placeholder="search by title"
+          />
+        </PostManagerHeader>
         {mappedPosts}
-        {showModal ? <PostModal showModal={this.showModal} id={modalID} /> : null}
+        {showModal ? (
+          <PostModal showModal={this.showModal} id={modalID}  />
+        ) : null}
       </AdminPosts>
     );
   }
