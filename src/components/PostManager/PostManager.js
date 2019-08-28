@@ -22,11 +22,19 @@ class PostManager extends Component {
   state = {
     posts: [],
     showModal: false,
-    modalID: null
+    modalID: null,
+    searchInput: ''
   };
 
   componentDidMount() {
     this.getPosts();
+  }
+
+  handleChange(prop,val){
+    this.setState({
+      [prop]: val
+    })
+    console.log(this.state.searchInput)
   }
 
   getPosts = async () => {
@@ -44,8 +52,8 @@ class PostManager extends Component {
   };
 
   render() {
-    let { showModal, modalID } = this.state;
-    let mappedPosts = this.state.posts.map(post => {
+    let { showModal, modalID, searchInput } = this.state;
+    let mappedPosts = this.state.posts.filter( post => post.post_title.toLowerCase().includes(searchInput.toLowerCase())).map(post => {
       return (
         <PostCard
           key={post.post_id}
@@ -62,6 +70,7 @@ class PostManager extends Component {
     return (
       <AdminPosts>
         <h2>your posts</h2>
+        <input onChange={(e) => this.handleChange("searchInput", e.target.value)} type="text" placeholder="search by title" />
         {mappedPosts}
         {showModal ? <PostModal showModal={this.showModal} id={modalID} /> : null}
       </AdminPosts>
